@@ -1,0 +1,23 @@
+{
+	"compilerOptions": {
+		"experimentalDecorators": true,
+		"sourceMap": true,
+		"noImplicitAny": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"module": "commonjs",
+		"target": "es6",
+		"strict": true,
+		"typeRoots": ["node_modules/@types"], 
+		"moduleResolution": "node",
+		"esModuleInterop": true,
+		"outDir": "build",
+		"rootDir": "./",
+		"baseUrl": "./",
+		"paths" : {
+		  "app/*": ["./exercises/*"]
+		}
+	},
+	"include": ["./exercises/**/*"],
+	"exclude": ["node_modules"]
+}
