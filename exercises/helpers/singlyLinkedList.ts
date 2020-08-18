@@ -57,6 +57,22 @@ export class SinglyLinkedList<T = string> {
 	}
 
 	/**
+	 * Computes the length of the linked list. Needs to loop the whole list each time.
+	 * @returns the list length
+	 */
+	public length(): number {
+
+		let length = 0;
+		let currNode = this.head;
+		while(currNode) {
+
+			length += 1;
+			currNode = currNode.next;
+		}
+		return length;
+	}
+
+	/**
 	 * Prints the linked list as a string. Assumes no cycles.
 	 * @returns the string representation
 	 */
@@ -64,9 +80,19 @@ export class SinglyLinkedList<T = string> {
 
 		if(this.head) {
 
+			const cycleCheckMap = new Map<Node<T>, boolean>();
+			cycleCheckMap.set(this.head, true);
 			let result = String(this.head.data);
 			let node = this.head.next;
 			while(node) {
+
+				if(cycleCheckMap.get(node)) {
+
+					result += ` -> [CYCLE on ${node.data}] -> ...`;
+					break;
+				}
+
+				cycleCheckMap.set(node, true);
 
 				result += ` -> ${node.data}`;
 				node = node.next;
