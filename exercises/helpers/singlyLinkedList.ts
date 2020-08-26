@@ -73,7 +73,7 @@ export class SinglyLinkedList<T = string> {
 	}
 
 	/**
-	 * Prints the linked list as a string. Assumes no cycles.
+	 * Prints the linked list as a string
 	 * @returns the string representation
 	 */
 	public toString(): string {

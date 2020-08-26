@@ -294,7 +294,7 @@ module.exports = {
 		'prefer-arrow-callback': [ 2, { allowNamedFunctions: false, allowUnboundThis: true }],
 		'prefer-const': [ 2, { destructuring: 'any', ignoreReadBeforeAssign: true }],
 		'prefer-numeric-literals': 2,
-		'prefer-reflect': [ 2, { exceptions: [] }],
+		'prefer-reflect': 'off',
 		'prefer-rest-params': 2,
 		'prefer-spread': 2,
 		'prefer-template': 2,
