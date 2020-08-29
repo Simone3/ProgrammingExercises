@@ -1,4 +1,4 @@
-import { Stack } from './helpers/stack';
+import { SimpleStack, Stack } from './data-structures/stack';
 
 /**
  * Like a literal stack of plates that if it gets too big it topples, this implementation of stack uses
@@ -7,7 +7,7 @@ import { Stack } from './helpers/stack';
 class StackOfPlates<T = string> {
 
 	private readonly MAX_STACK_SIZE = 3;
-	private stacks: Stack<T>[] = [ new Stack<T>() ];
+	private stacks: Stack<T>[] = [ new SimpleStack<T>() ];
 	private stackLengths = [ 0 ];
 	private currentStackIndex = 0;
 
@@ -25,7 +25,7 @@ class StackOfPlates<T = string> {
 			// If the next stack does not exist yet, create it
 			if(!this.stacks[this.currentStackIndex]) {
 
-				this.stacks.push(new Stack<T>());
+				this.stacks.push(new SimpleStack<T>());
 				this.stackLengths.push(0);
 			}
 		}

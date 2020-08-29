@@ -1,5 +1,42 @@
 
 /**
+ * A queue (FIFO)
+ * @template T the data type
+ */
+export interface Queue<T> {
+
+	/**
+	 * Adds a new item to the end of the queue
+	 * @param data the data to push
+	 */
+	add(data: T): void;
+
+	/**
+	 * Removes and returns the first element of the queue
+	 * @returns the top element of the queue
+	 */
+	remove(): T;
+
+	/**
+	 * Returns the top element of the queue
+	 * @returns the top element of the queue
+	 */
+	peek(): T;
+
+	/**
+	 * Checks if the queue is empty
+	 * @returns true if the queue is empty
+	 */
+	isEmpty(): boolean;
+
+	/**
+	 * Prints the queue as a string
+	 * @returns the string representation
+	 */
+	toString(): string;
+}
+
+/**
  * Simple implementation of a queue node
  * @template T the payload type, defaults to string
  */
@@ -14,23 +51,16 @@ class Node<T = string> {
 	 * The previous node pointer
 	 */
 	public previous: Node<T> | undefined;
-	
-	/**
-	 * The next node pointer
-	 */
-	public next: Node<T> | undefined;
 
 	/**
 	 * The constructor
 	 * @param data the node payload
 	 * @param previous the optional previous node pointer
-	 * @param next the optional next node pointer
 	 */
-	public constructor(data: T, previous?: Node<T>, next?: Node<T>) {
+	public constructor(data: T, previous?: Node<T>) {
 
 		this.data = data;
 		this.previous = previous;
-		this.next = next;
 	}
 }
 
@@ -38,17 +68,17 @@ class Node<T = string> {
  * Simple implementation of a queue (FIFO)
  * @template T the data type, defaults to string
  */
-export class Queue<T = string> {
+export class SimpleQueue<T = string> implements Queue<T> {
 
 	/**
 	 * The starting node pointer
 	 */
-	public start: Node<T> | undefined;
+	private start: Node<T> | undefined;
 
 	/**
 	 * The ending node pointer
 	 */
-	public end: Node<T> | undefined;
+	private end: Node<T> | undefined;
 
 	/**
 	 * The constructor
@@ -66,31 +96,25 @@ export class Queue<T = string> {
 	}
 
 	/**
-	 * Adds a new item to the end of the queue
-	 * @param data the data to push
+	 * @override
 	 */
 	public add(data: T): void {
 
 		const newNode = new Node<T>(data);
 
-		newNode.next = this.end;
-		
 		if(this.end) {
 
 			this.end.previous = newNode;
+			this.end = newNode;
 		}
+		else {
 
-		this.end = newNode;
-
-		if(!this.start) {
-
-			this.start = this.end;
+			this.start = this.end = newNode;
 		}
 	}
 
 	/**
-	 * Removes and returns the first element of the queue
-	 * @returns the top element of the queue
+	 * @override
 	 */
 	public remove(): T {
 
@@ -103,11 +127,7 @@ export class Queue<T = string> {
 		
 		this.start = this.start.previous;
 		
-		if(this.start) {
-
-			this.start.next = undefined;
-		}
-		else {
+		if(!this.start) {
 
 			this.end = undefined;
 		}
@@ -116,8 +136,7 @@ export class Queue<T = string> {
 	}
 
 	/**
-	 * Returns the top element of the queue
-	 * @returns the top element of the queue
+	 * @override
 	 */
 	public peek(): T {
 
@@ -130,8 +149,7 @@ export class Queue<T = string> {
 	}
 
 	/**
-	 * Checks if the queue is empty
-	 * @returns true if the queue is empty
+	 * @override
 	 */
 	public isEmpty(): boolean {
 
@@ -139,18 +157,18 @@ export class Queue<T = string> {
 	}
 
 	/**
-	 * Prints the queue as a string
-	 * @returns the string representation
+	 * @override
 	 */
 	public toString(): string {
 
-		if(this.end) {
-			let result = String(this.end.data);
-			let node = this.end.next;
+		if(this.start) {
+			
+			let result = String(this.start.data);
+			let node = this.start.previous;
 			while(node) {
 
-				result += ` -> ${node.data}`;
-				node = node.next;
+				result = `${node.data} -> ${result}`;
+				node = node.previous;
 			}
 
 			return result;

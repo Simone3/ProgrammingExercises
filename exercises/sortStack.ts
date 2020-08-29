@@ -1,4 +1,4 @@
-import { Stack } from './helpers/stack';
+import { SimpleStack, Stack } from './data-structures/stack';
 
 /**
  * Sorts a stack such that the smallest items are on the top. It uses just an additional temporary stack, and not any other data structure (such as an array).
@@ -8,7 +8,7 @@ import { Stack } from './helpers/stack';
  */
 const sortStack = (stack: Stack<number>): void => {
 
-	const supportStack = new Stack<number>();
+	const supportStack = new SimpleStack<number>();
 
 	// Loop the whole source stack until it's empty
 	while(!stack.isEmpty()) {
@@ -43,20 +43,20 @@ const sortStack = (stack: Stack<number>): void => {
 };
 
 const tests: Stack<number>[] = [
-	new Stack<number>([]),
-	new Stack<number>([ 1 ]),
-	new Stack<number>([ 1, 2 ]),
-	new Stack<number>([ 2, 1 ]),
-	new Stack<number>([ 1, 2, 3 ]),
-	new Stack<number>([ 2, 1, 3 ]),
-	new Stack<number>([ 3, 1, 2 ]),
-	new Stack<number>([ 3, 2, 1 ]),
-	new Stack<number>([ 1, 3, 2 ]),
-	new Stack<number>([ 2, 3, 1 ]),
-	new Stack<number>([ 5, 3, 7, 1, 5 ]),
-	new Stack<number>([ 3, 3, 3, 1, 3, 3, 3, 3 ]),
-	new Stack<number>([ 1, 2, 3, 4, 5, 6, 7, 8 ]),
-	new Stack<number>([ 8, 7, 6, 5, 4, 3, 2, 1 ])
+	new SimpleStack<number>([]),
+	new SimpleStack<number>([ 1 ]),
+	new SimpleStack<number>([ 1, 2 ]),
+	new SimpleStack<number>([ 2, 1 ]),
+	new SimpleStack<number>([ 1, 2, 3 ]),
+	new SimpleStack<number>([ 2, 1, 3 ]),
+	new SimpleStack<number>([ 3, 1, 2 ]),
+	new SimpleStack<number>([ 3, 2, 1 ]),
+	new SimpleStack<number>([ 1, 3, 2 ]),
+	new SimpleStack<number>([ 2, 3, 1 ]),
+	new SimpleStack<number>([ 5, 3, 7, 1, 5 ]),
+	new SimpleStack<number>([ 3, 3, 3, 1, 3, 3, 3, 3 ]),
+	new SimpleStack<number>([ 1, 2, 3, 4, 5, 6, 7, 8 ]),
+	new SimpleStack<number>([ 8, 7, 6, 5, 4, 3, 2, 1 ])
 ];
 
 for(const test of tests) {

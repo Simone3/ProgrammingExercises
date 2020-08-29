@@ -1,4 +1,4 @@
-import { Queue } from './helpers/queue';
+import { Queue, SimpleQueue } from './data-structures/queue';
 
 type AnimalType = 'CAT' | 'DOG';
 
@@ -52,7 +52,7 @@ class AnimalShelter {
 		let queue = this.queuesMap[animal.type];
 		if(!queue) {
 			
-			queue = new Queue<AnimalShelterQueueData>();
+			queue = new SimpleQueue<AnimalShelterQueueData>();
 			this.queuesMap[animal.type] = queue;
 		}
 		queue.add(new AnimalShelterQueueData(animal, new Date()));

@@ -1,4 +1,4 @@
-import { Stack } from './helpers/stack';
+import { SimpleStack } from './data-structures/stack';
 
 /**
  * Implementation of a queue using two stacks
@@ -8,12 +8,12 @@ export class QueueWithStacks<T = string> {
 	/**
 	 * Stack used for add operations (stack order)
 	 */
-	private insertOrderStack = new Stack<T>();
+	private insertOrderStack = new SimpleStack<T>();
 
 	/**
 	 * Stack used for remove/peek/toString operations (queue order)
 	 */
-	private reverseInsertOrderStack = new Stack<T>();
+	private reverseInsertOrderStack = new SimpleStack<T>();
 
 	/**
 	 * Flag to tell if we are using one stack or the other
@@ -120,12 +120,12 @@ export class QueueWithStacksV2<T = string> {
 	/**
 	 * Stack used for add operations (stack order)
 	 */
-	private writeStack = new Stack<T>();
+	private writeStack = new SimpleStack<T>();
 
 	/**
 	 * Stack used for remove/peek/toString operations (queue order)
 	 */
-	private readStack = new Stack<T>();
+	private readStack = new SimpleStack<T>();
 	
 	/**
 	 * Adds a new item to the end of the queue

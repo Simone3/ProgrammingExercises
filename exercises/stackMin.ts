@@ -1,10 +1,10 @@
-import { Stack } from './helpers/stack';
+import { SimpleStack, Stack } from './data-structures/stack';
 
 /**
  * Implementation of a stack that keeps track of the current minimum value.
  * Uses S = O(N) extra space.
  */
-class MinStack extends Stack<number> {
+class MinStack extends SimpleStack<number> {
 
 	/**
 	 * Parallel stack that keeps track of the min for the corresponding node in the main stack.
@@ -23,7 +23,7 @@ class MinStack extends Stack<number> {
 
 		if(!this.minStack) {
 
-			this.minStack = new Stack<number>();
+			this.minStack = new SimpleStack<number>();
 		}
 
 		if(this.minStack.isEmpty()) {

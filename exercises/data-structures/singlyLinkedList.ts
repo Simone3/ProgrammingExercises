@@ -1,17 +1,56 @@
 /**
- * Simple implementation of a singly linked list node
- * @template T the payload type, defaults to string
+ * A singly linked list node
+ * @template T the payload type
  */
-export class Node<T = string> {
+export interface Node<T> {
 
 	/**
 	 * The node payload
 	 */
-	public data: T;
+	data: T;
 	
 	/**
 	 * The next node pointer
 	 */
+	next: Node<T> | undefined;
+}
+
+/**
+ * A singly linked list
+ * @template T the nodes payload type
+ */
+export interface SinglyLinkedList<T> {
+
+	/**
+	 * The head node pointer
+	 */
+	head: Node<T> | undefined;
+
+	/**
+	 * Computes the length of the linked list. Needs to loop the whole list each time.
+	 * @returns the list length
+	 */
+	length(): number;
+
+	/**
+	 * Prints the linked list as a string
+	 * @returns the string representation
+	 */
+	toString(): string;
+
+	/**
+	 * Sorts the linked list
+	 */
+	sort(): void;
+}
+
+/**
+ * Simple implementation of a singly linked list node
+ * @template T the payload type, defaults to string
+ */
+export class SimpleNode<T = string> implements Node<T> {
+
+	public data: T;
 	public next: Node<T> | undefined;
 
 	/**
@@ -30,11 +69,8 @@ export class Node<T = string> {
  * Simple implementation of a singly linked list
  * @template T the nodes payload type, defaults to string
  */
-export class SinglyLinkedList<T = string> {
+export class SimpleSinglyLinkedList<T = string> implements SinglyLinkedList<T> {
 
-	/**
-	 * The head node pointer
-	 */
 	public head: Node<T> | undefined;
 
 	/**
@@ -45,11 +81,11 @@ export class SinglyLinkedList<T = string> {
 
 		if(nodesData && nodesData.length > 0) {
 
-			let node = new Node(nodesData[0]);
+			let node = new SimpleNode(nodesData[0]);
 			this.head = node;
 			for(let i = 1; i < nodesData.length; i++) {
 
-				const newNode = new Node(nodesData[i]);
+				const newNode = new SimpleNode(nodesData[i]);
 				node.next = newNode;
 				node = newNode;
 			}
@@ -57,8 +93,7 @@ export class SinglyLinkedList<T = string> {
 	}
 
 	/**
-	 * Computes the length of the linked list. Needs to loop the whole list each time.
-	 * @returns the list length
+	 * @override
 	 */
 	public length(): number {
 
@@ -73,8 +108,7 @@ export class SinglyLinkedList<T = string> {
 	}
 
 	/**
-	 * Prints the linked list as a string
-	 * @returns the string representation
+	 * @override
 	 */
 	public toString(): string {
 
@@ -107,7 +141,7 @@ export class SinglyLinkedList<T = string> {
 	}
 
 	/**
-	 * Sorts the linked list with a mergesort algorithm
+	 * @override
 	 */
 	public sort(): void {
 

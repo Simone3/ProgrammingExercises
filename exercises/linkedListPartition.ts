@@ -1,4 +1,4 @@
-import { Node, SinglyLinkedList } from './helpers/singlyLinkedList';
+import { Node, SimpleSinglyLinkedList, SinglyLinkedList } from './data-structures/singlyLinkedList';
 
 /**
  * Partitions a linked list around a value x, such that all nodes less than x come before all nodes greater than or equal to x.
@@ -59,17 +59,17 @@ export const linkedListPartition = (list: SinglyLinkedList<number>, partitionEle
 	}
 };
 
-const tests: SinglyLinkedList<number>[] = [
-	new SinglyLinkedList<number>([]),
-	new SinglyLinkedList<number>([ 1 ]),
-	new SinglyLinkedList<number>([ 1, 2 ]),
-	new SinglyLinkedList<number>([ 5 ]),
-	new SinglyLinkedList<number>([ 1, 5 ]),
-	new SinglyLinkedList<number>([ 5, 1 ]),
-	new SinglyLinkedList<number>([ 4, 1, 7, 9, 2, 3, 8, 8, 8, 10 ]),
-	new SinglyLinkedList<number>([ 4, 5, 1, 7, 9, 2, 3, 8, 8, 8, 5, 10 ]),
-	new SinglyLinkedList<number>([ 5, 5, 5, 1, 5, 5, 5, 5 ]),
-	new SinglyLinkedList<number>([ 5, 5, 5, 7, 5, 5, 5, 5 ])
+const tests: SimpleSinglyLinkedList<number>[] = [
+	new SimpleSinglyLinkedList<number>([]),
+	new SimpleSinglyLinkedList<number>([ 1 ]),
+	new SimpleSinglyLinkedList<number>([ 1, 2 ]),
+	new SimpleSinglyLinkedList<number>([ 5 ]),
+	new SimpleSinglyLinkedList<number>([ 1, 5 ]),
+	new SimpleSinglyLinkedList<number>([ 5, 1 ]),
+	new SimpleSinglyLinkedList<number>([ 4, 1, 7, 9, 2, 3, 8, 8, 8, 10 ]),
+	new SimpleSinglyLinkedList<number>([ 4, 5, 1, 7, 9, 2, 3, 8, 8, 8, 5, 10 ]),
+	new SimpleSinglyLinkedList<number>([ 5, 5, 5, 1, 5, 5, 5, 5 ]),
+	new SimpleSinglyLinkedList<number>([ 5, 5, 5, 7, 5, 5, 5, 5 ])
 ];
 
 for(const test of tests) {

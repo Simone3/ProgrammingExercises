@@ -1,4 +1,4 @@
-import { Node, SinglyLinkedList } from './helpers/singlyLinkedList';
+import { Node, SimpleSinglyLinkedList, SinglyLinkedList } from './data-structures/singlyLinkedList';
 
 /**
  * Finds the k-th to last element of a singly linked list.
@@ -8,7 +8,7 @@ import { Node, SinglyLinkedList } from './helpers/singlyLinkedList';
  * @param indexToLast the position to find
  * @returns the node, or undefined if length is not sufficien
  */
-export const kthToLast = (list: SinglyLinkedList, indexToLast: number): Node | undefined => {
+export const kthToLast = <T> (list: SinglyLinkedList<T>, indexToLast: number): Node<T> | undefined => {
 
 	if(indexToLast < 0) {
 
@@ -36,14 +36,14 @@ export const kthToLast = (list: SinglyLinkedList, indexToLast: number): Node | u
 	return initialCounter === indexToLast + 1 ? kthToLastNode : undefined;
 };
 
-const tests: SinglyLinkedList[] = [
-	new SinglyLinkedList([]),
-	new SinglyLinkedList([ 'a' ]),
-	new SinglyLinkedList([ 'a', 'b' ]),
-	new SinglyLinkedList([ 'a', 'b', 'c' ]),
-	new SinglyLinkedList([ 'a', 'b', 'c', 'd' ]),
-	new SinglyLinkedList([ 'a', 'b', 'c', 'd', 'e' ]),
-	new SinglyLinkedList([ 'a', 'b', 'c', 'd', 'e', 'f' ])
+const tests: SimpleSinglyLinkedList[] = [
+	new SimpleSinglyLinkedList([]),
+	new SimpleSinglyLinkedList([ 'a' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b', 'c' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b', 'c', 'd' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b', 'c', 'd', 'e' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b', 'c', 'd', 'e', 'f' ])
 ];
 
 const indexes: number[] = [

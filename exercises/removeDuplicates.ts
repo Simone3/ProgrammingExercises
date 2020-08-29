@@ -1,4 +1,4 @@
-import { SinglyLinkedList } from './helpers/singlyLinkedList';
+import { SimpleSinglyLinkedList, SinglyLinkedList } from './data-structures/singlyLinkedList';
 
 /**
  * Removes all duplicates from a singly linked list
@@ -6,7 +6,7 @@ import { SinglyLinkedList } from './helpers/singlyLinkedList';
  * S = O(N)
  * @param input the input list
  */
-export const removeDuplicates = (input: SinglyLinkedList): void => {
+export const removeDuplicates = (input: SinglyLinkedList<string>): void => {
 
 	const dataMap: {[key: string]: boolean} = {};
 
@@ -38,18 +38,18 @@ export const removeDuplicates = (input: SinglyLinkedList): void => {
 	}
 };
 
-const tests: SinglyLinkedList[] = [
-	new SinglyLinkedList([]),
-	new SinglyLinkedList([ 'a' ]),
-	new SinglyLinkedList([ 'a', 'b', 'c', 'd', 'e', 'f' ]),
-	new SinglyLinkedList([ 'a', 'b', 'a', 'd', 'e', 'f' ]),
-	new SinglyLinkedList([ 'a', 'a', 'c', 'd', 'e', 'f' ]),
-	new SinglyLinkedList([ 'a', 'b', 'c', 'd', 'e', 'a' ]),
-	new SinglyLinkedList([ 'a', 'b', 'b', 'a', 'e', 'b' ]),
-	new SinglyLinkedList([ 'a', 'a', 'a', 'd', 'a', 'a' ]),
-	new SinglyLinkedList([ 'a', 'b', 'c', 'd', 'f', 'f' ]),
-	new SinglyLinkedList([ 'a', 'b', 'f', 'f', 'f', 'f' ]),
-	new SinglyLinkedList([ 'a', 'a', 'a', 'a', 'a', 'a' ])
+const tests: SimpleSinglyLinkedList[] = [
+	new SimpleSinglyLinkedList([]),
+	new SimpleSinglyLinkedList([ 'a' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b', 'c', 'd', 'e', 'f' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b', 'a', 'd', 'e', 'f' ]),
+	new SimpleSinglyLinkedList([ 'a', 'a', 'c', 'd', 'e', 'f' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b', 'c', 'd', 'e', 'a' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b', 'b', 'a', 'e', 'b' ]),
+	new SimpleSinglyLinkedList([ 'a', 'a', 'a', 'd', 'a', 'a' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b', 'c', 'd', 'f', 'f' ]),
+	new SimpleSinglyLinkedList([ 'a', 'b', 'f', 'f', 'f', 'f' ]),
+	new SimpleSinglyLinkedList([ 'a', 'a', 'a', 'a', 'a', 'a' ])
 ];
 
 for(const test of tests) {

@@ -1,3 +1,41 @@
+
+/**
+ * A stack (LIFO)
+ * @template T the data type
+ */
+export interface Stack<T> {
+
+	/**
+	 * Pushes a new item to the top of the stack
+	 * @param data the data to push
+	 */
+	push(data: T): void;
+
+	/**
+	 * Removes and returns the top element of the stack
+	 * @returns the top element of the stack
+	 */
+	pop(): T;
+
+	/**
+	 * Returns the top element of the stack
+	 * @returns the top element of the stack
+	 */
+	peek(): T;
+
+	/**
+	 * Checks if the stack is empty
+	 * @returns true if the stack is empty
+	 */
+	isEmpty(): boolean;
+
+	/**
+	 * Prints the stack as a string
+	 * @returns the string representation
+	 */
+	toString(): string;
+}
+
 /**
  * Simple implementation of a stack node
  * @template T the payload type, defaults to string
@@ -30,12 +68,12 @@ class Node<T = string> {
  * Simple implementation of a stack (LIFO)
  * @template T the data type, defaults to string
  */
-export class Stack<T = string> {
+export class SimpleStack<T = string> implements Stack<T> {
 
 	/**
 	 * The top node pointer
 	 */
-	public topNode: Node<T> | undefined;
+	private topNode: Node<T> | undefined;
 
 	/**
 	 * The constructor
@@ -53,8 +91,7 @@ export class Stack<T = string> {
 	}
 
 	/**
-	 * Pushes a new item to the top of the stack
-	 * @param data the data to push
+	 * @override
 	 */
 	public push(data: T): void {
 
@@ -64,8 +101,7 @@ export class Stack<T = string> {
 	}
 
 	/**
-	 * Removes and returns the top element of the stack
-	 * @returns the top element of the stack
+	 * @override
 	 */
 	public pop(): T {
 
@@ -80,8 +116,7 @@ export class Stack<T = string> {
 	}
 
 	/**
-	 * Returns the top element of the stack
-	 * @returns the top element of the stack
+	 * @override
 	 */
 	public peek(): T {
 
@@ -94,8 +129,7 @@ export class Stack<T = string> {
 	}
 
 	/**
-	 * Checks if the stack is empty
-	 * @returns true if the stack is empty
+	 * @override
 	 */
 	public isEmpty(): boolean {
 
@@ -103,8 +137,7 @@ export class Stack<T = string> {
 	}
 
 	/**
-	 * Prints the stack as a string
-	 * @returns the string representation
+	 * @override
 	 */
 	public toString(): string {
 
