@@ -1,10 +1,32 @@
 import { AdjacencyListGraphNode, SimpleAdjacencyListGraphNode } from './data-structures/graph';
 
 const tests: AdjacencyListGraphNode<string>[] = [
+
 	new SimpleAdjacencyListGraphNode('a'),
-	new SimpleAdjacencyListGraphNode('a', [ new SimpleAdjacencyListGraphNode('b') ]),
-	new SimpleAdjacencyListGraphNode('a', [ new SimpleAdjacencyListGraphNode('b'), new SimpleAdjacencyListGraphNode('c'), new SimpleAdjacencyListGraphNode('d') ]),
-	new SimpleAdjacencyListGraphNode('a', [ new SimpleAdjacencyListGraphNode('b'), new SimpleAdjacencyListGraphNode('c', [ new SimpleAdjacencyListGraphNode('d'), new SimpleAdjacencyListGraphNode('e'), new SimpleAdjacencyListGraphNode('f') ]), new SimpleAdjacencyListGraphNode('g', [ new SimpleAdjacencyListGraphNode('h', [ new SimpleAdjacencyListGraphNode('i') ]) ]) ])
+
+	new SimpleAdjacencyListGraphNode('a', [
+		new SimpleAdjacencyListGraphNode('b')
+	]),
+
+	new SimpleAdjacencyListGraphNode('a', [
+		new SimpleAdjacencyListGraphNode('b'),
+		new SimpleAdjacencyListGraphNode('c'),
+		new SimpleAdjacencyListGraphNode('d')
+	]),
+	
+	new SimpleAdjacencyListGraphNode('a', [
+		new SimpleAdjacencyListGraphNode('b'),
+		new SimpleAdjacencyListGraphNode('c', [
+			new SimpleAdjacencyListGraphNode('d'),
+			new SimpleAdjacencyListGraphNode('e'),
+			new SimpleAdjacencyListGraphNode('f')
+		]),
+		new SimpleAdjacencyListGraphNode('g', [
+			new SimpleAdjacencyListGraphNode('h', [
+				new SimpleAdjacencyListGraphNode('i')
+			])
+		])
+	])
 ];
 
 const nodeA = new SimpleAdjacencyListGraphNode('a');
