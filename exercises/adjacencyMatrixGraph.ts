@@ -30,26 +30,26 @@ for(const test of tests) {
 	const toString = test.toString();
 
 	let breadthFirst = '';
-	test.breadthFirstTraversal((data, depth) => {
+	test.breadthFirstTraversal((data, _, depth) => {
 
 		breadthFirst += `${' '.repeat(depth)}${data}\n`;
 	});
 
 	let interruptedBreadthFirst = '';
-	test.breadthFirstTraversal((data, depth) => {
+	test.breadthFirstTraversal((data, _, depth) => {
 
 		interruptedBreadthFirst += `${' '.repeat(depth)}${data}\n`;
 		return data === 'c';
 	});
 
 	let depthFirst = '';
-	test.depthFirstTraversal((data, depth) => {
+	test.depthFirstTraversal((data, _, depth) => {
 
 		depthFirst += `${' '.repeat(depth)}${data}\n`;
 	});
 
 	let interruptedDepthFirst = '';
-	test.depthFirstTraversal((data, depth) => {
+	test.depthFirstTraversal((data, _, depth) => {
 
 		interruptedDepthFirst += `${' '.repeat(depth)}${data}\n`;
 		return data === 'c';

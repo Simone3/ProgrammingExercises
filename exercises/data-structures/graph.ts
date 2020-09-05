@@ -4,7 +4,7 @@ import { SimpleQueue } from './queue';
  * Helper type for graph callbacks
  * @template T the data type
  */
-export type GraphCallback<T> = (data: T, depth: number) => boolean | undefined | void;
+export type AdjacencyListGraphCallback<T> = (data: T, node: AdjacencyListGraphNode<T>, depth: number) => boolean | undefined | void;
 
 /**
  * A node of an adjacency list graph. It may or may not have children that continue the graph.
@@ -26,13 +26,13 @@ export interface AdjacencyListGraphNode<T> {
 	 * Traverses the graph with a breadth-first approach starting from this node
 	 * @param callback function called for each node (if it returns true, the traversal stops)
 	 */
-	breadthFirstTraversal(callback: GraphCallback<T>): void;
+	breadthFirstTraversal(callback: AdjacencyListGraphCallback<T>): void;
 
 	/**
 	 * Traverses the graph with a depth-first approach starting from this node
 	 * @param callback function called for each node (if it returns true, the traversal stops)
 	 */
-	depthFirstTraversal(callback: GraphCallback<T>): void;
+	depthFirstTraversal(callback: AdjacencyListGraphCallback<T>): void;
 
 	/**
 	 * Prints the graph as a string starting from this node
@@ -64,7 +64,7 @@ export class SimpleAdjacencyListGraphNode<T = string> implements AdjacencyListGr
 	/**
 	 * @override
 	 */
-	public breadthFirstTraversal(callback: GraphCallback<T>): void {
+	public breadthFirstTraversal(callback: AdjacencyListGraphCallback<T>): void {
 		
 		// Init two queues for BFS ordering and a map to detect cycles
 		const nodesQueue = new SimpleQueue<AdjacencyListGraphNode<T>>();
@@ -83,7 +83,7 @@ export class SimpleAdjacencyListGraphNode<T = string> implements AdjacencyListGr
 
 				cyclesMap.set(node, true);
 
-				const stop = callback(node.data, depth);
+				const stop = callback(node.data, node, depth);
 				if(stop) {
 
 					return;
@@ -101,7 +101,7 @@ export class SimpleAdjacencyListGraphNode<T = string> implements AdjacencyListGr
 	/**
 	 * @override
 	 */
-	public depthFirstTraversal(callback: GraphCallback<T>): void {
+	public depthFirstTraversal(callback: AdjacencyListGraphCallback<T>): void {
 
 		this.depthFirstHelper(callback, new Map<AdjacencyListGraphNode<T>, boolean>(), this, 0);
 	}
@@ -157,7 +157,7 @@ export class SimpleAdjacencyListGraphNode<T = string> implements AdjacencyListGr
 	 * @param depth the current node depth
 	 * @returns true if the traversal needs to stop
 	 */
-	private depthFirstHelper(callback: GraphCallback<T>, cyclesMap: Map<AdjacencyListGraphNode<T>, boolean>, node: AdjacencyListGraphNode<T>, depth: number): boolean {
+	private depthFirstHelper(callback: AdjacencyListGraphCallback<T>, cyclesMap: Map<AdjacencyListGraphNode<T>, boolean>, node: AdjacencyListGraphNode<T>, depth: number): boolean {
 
 		// Handle cycles with the map
 		if(cyclesMap.get(node)) {
@@ -167,7 +167,7 @@ export class SimpleAdjacencyListGraphNode<T = string> implements AdjacencyListGr
 		cyclesMap.set(node, true);
 
 		// Invoke the callback for the current node and exit if it returns true
-		let stop = callback(node.data, depth);
+		let stop = callback(node.data, node, depth);
 		if(stop) {
 
 			return true;
@@ -186,6 +186,12 @@ export class SimpleAdjacencyListGraphNode<T = string> implements AdjacencyListGr
 		return false;
 	}
 }
+
+/**
+ * Helper type for graph callbacks
+ * @template T the data type
+ */
+export type AdjacencyMatrixGraphCallback<T> = (data: T, index: number, depth: number) => boolean | undefined | void;
 
 /**
  * A graph implemented with an adjacency matrix
@@ -218,14 +224,14 @@ export interface AdjacencyMatrixGraph<T> {
 	 * @param callback function called for each node (if it returns true, the traversal stops)
 	 * @param startFromIndex optional starting node index (defaults to 0)
 	 */
-	breadthFirstTraversal(callback: GraphCallback<T>, startFromIndex?: number): void;
+	breadthFirstTraversal(callback: AdjacencyMatrixGraphCallback<T>, startFromIndex?: number): void;
 
 	/**
 	 * Traverses the graph with a depth-first approach
 	 * @param callback function called for each node (if it returns true, the traversal stops)
 	 * @param startFromIndex optional starting node index (defaults to 0)
 	 */
-	depthFirstTraversal(callback: GraphCallback<T>, startFromIndex?: number): void;
+	depthFirstTraversal(callback: AdjacencyMatrixGraphCallback<T>, startFromIndex?: number): void;
 
 	/**
 	 * Prints the graph as a string starting from the 0-th node
@@ -315,7 +321,7 @@ export class SimpleAdjacencyMatrixGraph<T = string> implements AdjacencyMatrixGr
 	/**
 	 * @override
 	 */
-	public breadthFirstTraversal(callback: GraphCallback<T>, startFromIndex?: number): void {
+	public breadthFirstTraversal(callback: AdjacencyMatrixGraphCallback<T>, startFromIndex?: number): void {
 
 		if(this.isEmpty()) {
 
@@ -340,7 +346,7 @@ export class SimpleAdjacencyMatrixGraph<T = string> implements AdjacencyMatrixGr
 
 				cyclesArray[index] = true;
 
-				const stop = callback(this.nodesData[index], depth);
+				const stop = callback(this.nodesData[index], index, depth);
 				if(stop) {
 
 					return;
@@ -362,7 +368,7 @@ export class SimpleAdjacencyMatrixGraph<T = string> implements AdjacencyMatrixGr
 	/**
 	 * @override
 	 */
-	public depthFirstTraversal(callback: GraphCallback<T>, startFromIndex?: number): void {
+	public depthFirstTraversal(callback: AdjacencyMatrixGraphCallback<T>, startFromIndex?: number): void {
 
 		if(this.isEmpty()) {
 
@@ -437,7 +443,7 @@ export class SimpleAdjacencyMatrixGraph<T = string> implements AdjacencyMatrixGr
 	 * @param depth the current node depth
 	 * @returns true if the traversal needs to stop
 	 */
-	private depthFirstHelper(callback: GraphCallback<T>, cyclesArray: boolean[], index: number, depth: number): boolean {
+	private depthFirstHelper(callback: AdjacencyMatrixGraphCallback<T>, cyclesArray: boolean[], index: number, depth: number): boolean {
 
 		// Handle cycles with the array
 		if(cyclesArray[index]) {
@@ -447,7 +453,7 @@ export class SimpleAdjacencyMatrixGraph<T = string> implements AdjacencyMatrixGr
 		cyclesArray[index] = true;
 
 		// Invoke the callback for the current node and exit if it returns true
-		let stop = callback(this.nodesData[index], depth);
+		let stop = callback(this.nodesData[index], index, depth);
 		if(stop) {
 
 			return true;
