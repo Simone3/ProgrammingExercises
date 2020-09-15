@@ -7,11 +7,11 @@
 		{
 			"type": "node",
 			"request": "launch",
-			"name": "Build Order",
+			"name": "Debug Current",
 			"skipFiles": [
 				"<node_internals>/**"
 			],
-			"program": "${workspaceFolder}/exercises/buildOrder.ts",
+			"program": "${workspaceFolder}/exercises/binarySearchTreeSequences.ts",
 			"preLaunchTask": "tsc: build - tsconfig.json",
 			"outFiles": [
 				"${workspaceFolder}/build/**/*.js"

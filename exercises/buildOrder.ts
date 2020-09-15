@@ -418,7 +418,7 @@ class ProjectBuildV3 {
 	private projectIndicesMap: {[key: string]: number} = {};
 	private adjacencyGraphNodes: AdjacencyListGraphNode<ProjectNodeDataV3>[] = [];
 	private buildOrder: string[] = [];
-	private currentBuildIndex = this.length - 1;
+	private currentBuildIndex = 0;
 
 	/**
 	 * The constructor
