@@ -232,7 +232,7 @@ module.exports = {
 		'new-parens': 2,
 		'newline-per-chained-call': [ 2, { ignoreChainWithDepth: 4 }],
 		'no-array-constructor': 2,
-		'no-bitwise': 2,
+		'no-bitwise': 'off',
 		'no-continue': 0,
 		'no-inline-comments': 2,
 		'no-lonely-if': 2,
