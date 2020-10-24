@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/Simone3/ProgrammingExercises#readme",
   "devDependencies": {
+    "@types/prompt-sync": "^4.1.0",
     "@typescript-eslint/eslint-plugin": "~3.1.0",
     "@typescript-eslint/parser": "~3.1.0",
     "eslint": "~7.1.0",
@@ -28,5 +29,7 @@
     "tsc-alias": "~1.1.1",
     "typescript": "~3.9.5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
 }
