@@ -186,7 +186,7 @@ module.exports = {
 			min: 2,
 			max: Number.infinity,
 			properties: 'always',
-			exceptions: [ '_', 'i', 'j', 'x', 'y', 'z', 'q' ]
+			exceptions: [ '_', 'i', 'j', 'x', 'y', 'z', 'q', 'c', 'r' ]
 		}],
 		'id-match': 0,
 		'implicit-arrow-linebreak': 0,
@@ -267,7 +267,7 @@ module.exports = {
 		'semi-spacing': [ 2, { before: false, after: true }],
 		'semi-style': [ 2, 'last' ],
 		'sort-keys': [ 0 ],
-		'sort-vars': [ 2, { ignoreCase: true }],
+		'sort-vars': 'off',
 		'space-before-blocks': [ 2, 'always' ],
 		'space-before-function-paren': [ 2, 'never' ],
 		'space-in-parens': [ 2, 'never' ],
