@@ -49,3 +49,23 @@ export const randomInteger = (min: number, max: number): number => {
 
 	return Math.floor(Math.random() * (max - min + 1) + min);
 };
+
+/**
+ * Simple helper to generate a random integer array, with values between two integers, for test purposes
+ * @param length the array length
+ * @param min the min number (inclusive)
+ * @param max the max number (inclusive)
+ * @returns a random integer array
+ */
+export const randomIntegerArray = (length: number, min: number, max: number): number[] => {
+
+	const array = [];
+	array.length = length;
+
+	for(let i = 0; i < length; i++) {
+
+		array[i] = randomInteger(min, max);
+	}
+
+	return array;
+};

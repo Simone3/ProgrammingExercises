@@ -186,7 +186,7 @@ module.exports = {
 			min: 2,
 			max: Number.infinity,
 			properties: 'always',
-			exceptions: [ '_', 'i', 'j', 'x', 'y', 'z', 'q', 'c', 'r' ]
+			exceptions: [ '_', 'i', 'j', 'k', 'x', 'y', 'z', 'q', 'c', 'r' ]
 		}],
 		'id-match': 0,
 		'implicit-arrow-linebreak': 0,
