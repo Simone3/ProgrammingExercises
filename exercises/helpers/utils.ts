@@ -69,3 +69,19 @@ export const randomIntegerArray = (length: number, min: number, max: number): nu
 
 	return array;
 };
+
+/**
+ * Simple helper to generate a sorted random integer array, with values between two integers, for test purposes
+ * @param length the array length
+ * @param min the min number (inclusive)
+ * @param max the max number (inclusive)
+ * @returns a random integer array
+ */
+export const randomSortedIntegerArray = (length: number, min: number, max: number): number[] => {
+
+	return randomIntegerArray(length, min, max).sort((first, second) => {
+
+		return first - second;
+	});
+};
+
