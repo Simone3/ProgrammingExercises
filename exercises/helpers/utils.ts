@@ -85,3 +85,41 @@ export const randomSortedIntegerArray = (length: number, min: number, max: numbe
 	});
 };
 
+/**
+ * Randomly sorts an array
+ * @param array the source array
+ * @returns a reference to the source array itself
+ */
+export const randomSort = <T> (array: T[]): T[] => {
+
+	return array.sort(() => {
+
+		return randomInteger(-1, 1);
+	});
+};
+
+/**
+ * Rotates an array
+ * @param array the source array
+ * @param times the number of rotations (positive = to the right, negative = to the left)
+ * @returns a reference to the source array itself
+ */
+export const rotateArray = <T> (array: T[], times: number): T[] => {
+
+	const length = array.length;
+
+	const helper: T[] = [];
+
+	for(let i = 0; i < length; i++) {
+
+		const newI = times >= 0 ? (i + times) % length : (length + i - (-times % length)) % length;
+		helper[newI] = array[i];
+	}
+
+	for(let i = 0; i < length; i++) {
+
+		array[i] = helper[i];
+	}
+
+	return array;
+};

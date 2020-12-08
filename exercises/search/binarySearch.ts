@@ -17,6 +17,12 @@ const binarySearchHelper = (list: number[], elementToFind: number, start: number
 	}
 	else {
 
+		if(elementToFind < list[start] || elementToFind > list[end]) {
+
+			// The element is outside the bounds, shortcircuit right away
+			return undefined;
+		}
+
 		const middle = start + Math.floor(diff / 2);
 		const middleElement = list[middle];
 		if(middleElement === elementToFind) {
@@ -28,7 +34,7 @@ const binarySearchHelper = (list: number[], elementToFind: number, start: number
 			}
 			else {
 				
-				// Found the first matching element, return it
+				// Found the first matching element, return its index
 				return middle;
 			}
 		}
