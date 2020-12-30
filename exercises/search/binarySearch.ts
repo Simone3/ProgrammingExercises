@@ -54,7 +54,7 @@ const binarySearchHelper = (list: number[], elementToFind: number, start: number
 /**
  * Binary search implementation
  * T = O(log(N))
- * S = O(1)
+ * S = O(log(N)) (recursion)
  * @param list the ordered list
  * @param elementToFind the element to search
  * @returns the element index or undefined if not found

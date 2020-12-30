@@ -67,7 +67,7 @@ const searchRotatedArrayHelper = (array: number[], element: number, start: numbe
 /**
  * Given a sorted array of integers that has been rotated an unknown number of times, this function finds an element in the array.
  * T = O(log(N))
- * S = O(1)
+ * S = O(log(N)) (recursion)
  * @param array the source array
  * @param element the element to find
  * @returns the element index or undefined if not found
