@@ -182,12 +182,7 @@ module.exports = {
 		'func-style': [ 2, 'expression' ],
 		'function-paren-newline': [ 2, 'consistent' ],
 		'id-blacklist': 0,
-		'id-length': [ 2, {
-			min: 2,
-			max: Number.infinity,
-			properties: 'always',
-			exceptions: [ '_', 'i', 'j', 'k', 'x', 'y', 'z', 'q', 'c', 'r', 'm' ]
-		}],
+		'id-length': 'off',
 		'id-match': 0,
 		'implicit-arrow-linebreak': 0,
 		'jsx-quotes': [ 2, 'prefer-single' ],
