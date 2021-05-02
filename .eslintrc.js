@@ -199,7 +199,8 @@ module.exports = {
 				case: { after: true },
 				try: { after: true },
 				const: { after: true },
-				throw: { after: true }
+				throw: { after: true },
+				do: { after: true }
 			}
 		}],
 		'line-comment-position': [ 2, { position: 'above' }],
