@@ -70,7 +70,7 @@ export const missingNumberV1 = (numbers: SpecialInt[]): number => {
  * The elements of A are represented in binary, and the only operation we can use to access them is "fetch the jth bit of A[i]"" which takes constant time.
  * This function finds the missing integer.
  * T = O(N)
- * S = O(1)
+ * S = O(N)
  * @param numbers the array of numbers
  * @returns the missing number
  */

@@ -23,11 +23,16 @@ export const hasOwnFunctionProperty = <X extends {}, Y extends PropertyKey> (obj
 /**
  * Simple helper to generate a random string for test purposes
  * @param length string length
+ * @param characters optional domain of the string
  * @returns the random string
  */
-export const randomString = (length: number): string => {
+export const randomString = (length: number, characters?: string): string => {
 
-	const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	if(!characters) {
+
+		characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	}
+
 	const charactersLength = characters.length;
 
 	let result = '';
