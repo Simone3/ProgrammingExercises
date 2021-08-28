@@ -38,7 +38,7 @@ export interface AdjacencyListGraphNode<T> {
 	 * Prints the graph as a string starting from this node
 	 * @returns the string representation
 	 */
-	toString(): string;
+	toString(stringifyData?: boolean): string;
 }
 
 /**
@@ -109,7 +109,7 @@ export class SimpleAdjacencyListGraphNode<T = string> implements AdjacencyListGr
 	/**
 	 * @override
 	 */
-	public toString(): string {
+	public toString(stringifyData?: boolean): string {
 
 		let result = '';
 
@@ -127,7 +127,7 @@ export class SimpleAdjacencyListGraphNode<T = string> implements AdjacencyListGr
 
 				cyclesMap.set(node, true);
 
-				result += `${result ? ' --- ' : ''}${node.data}: `;
+				result += `${result ? ' --- ' : ''}${stringifyData ? JSON.stringify(node.data) : node.data}: `;
 
 				const childrenCount = node.children.length;
 				if(childrenCount === 0) {
@@ -139,7 +139,7 @@ export class SimpleAdjacencyListGraphNode<T = string> implements AdjacencyListGr
 					for(let i = 0; i < childrenCount; i++) {
 
 						const child = node.children[i];
-						result += `${i === 0 ? '' : ', '}${child.data}`;
+						result += `${i === 0 ? '' : ', '}${stringifyData ? JSON.stringify(child.data) : child.data}`;
 						nodesQueue.add(child);
 					}
 				}
