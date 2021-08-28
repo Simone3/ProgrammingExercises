@@ -6,7 +6,7 @@
     "node": "10.x"
   },
   "scripts": {
-    "lint": "eslint exercises/**/*.ts"
+    "lint": "eslint 'app/**/*.ts'"
   },
   "repository": {
     "type": "git",

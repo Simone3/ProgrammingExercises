@@ -15,9 +15,9 @@
 		"rootDir": "./",
 		"baseUrl": "./",
 		"paths" : {
-		  "app/*": ["./exercises/*"]
+		  "app/*": ["./app/*"]
 		}
 	},
-	"include": ["./exercises/**/*"],
+	"include": ["./app/**/*"],
 	"exclude": ["node_modules"]
 }
