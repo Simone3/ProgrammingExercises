@@ -128,3 +128,59 @@ export const rotateArray = <T> (array: T[], times: number): T[] => {
 
 	return array;
 };
+
+/**
+ * Randomly shuffles an array
+ * @param array the array
+ * @returns a reference to the input array
+ */
+export const shuffle = <T> (array: T[]): T[] => {
+	
+	for(let i = 0; i < array.length; i++) {
+
+		const k = randomInteger(0, i);
+		const temp = array[k];
+		array[k] = array[i];
+		array[i] = temp;
+	}
+
+	return array;
+};
+
+const permutationsHelper = <T> (array: T[], current: T[], result: T[][], picked: boolean[], remaining: number): void => {
+
+	if(remaining === 0) {
+
+		result.push([ ...current ]);
+		return;
+	}
+
+	const pickedHereMap = new Map();
+
+	for(let i = 0; i < array.length; i++) {
+
+		const value = array[i];
+		if(!picked[i] && !pickedHereMap.has(value)) {
+
+			pickedHereMap.set(value, true);
+
+			picked[i] = true;
+			current.push(value);
+			permutationsHelper(array, current, result, picked, remaining - 1);
+			current.pop();
+			picked[i] = false;
+		}
+	}
+};
+
+/**
+ * Returns all possible permutations of an array (if 2 or more elements are equal, the permutations returned are unique)
+ * @param array the array
+ * @returns all possible permutations
+ */
+export const permutations = <T> (array: T[]): T[][] => {
+	
+	const result: T[][] = [];
+	permutationsHelper(array, [], result, [], array.length);
+	return result;
+};
