@@ -36,6 +36,7 @@ export interface AdjacencyListGraphNode<T> {
 
 	/**
 	 * Prints the graph as a string starting from this node
+	 * @param stringifyData if true, calls JSON.stringify on each node data
 	 * @returns the string representation
 	 */
 	toString(stringifyData?: boolean): string;

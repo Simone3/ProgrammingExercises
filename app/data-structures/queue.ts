@@ -30,10 +30,17 @@ export interface Queue<T> {
 	isEmpty(): boolean;
 
 	/**
+	 * Computes the length of the queue. Needs to loop the whole queue each time.
+	 * @returns the queue length
+	 */
+	length(): number;
+
+	/**
 	 * Prints the queue as a string
+	 * @param stringifyData if true, calls JSON.stringify on each node data
 	 * @returns the string representation
 	 */
-	toString(): string;
+	toString(stringifyData?: boolean): string;
 }
 
 /**
@@ -159,15 +166,30 @@ export class SimpleQueue<T = string> implements Queue<T> {
 	/**
 	 * @override
 	 */
-	public toString(): string {
+	public length(): number {
+
+		let length = 0;
+		let node = this.start;
+		while(node) {
+
+			length += 1;
+			node = node.previous;
+		}
+		return length;
+	}
+
+	/**
+	 * @override
+	 */
+	public toString(stringifyData?: boolean): string {
 
 		if(this.start) {
 			
-			let result = String(this.start.data);
+			let result = String(stringifyData ? JSON.stringify(this.start.data) : this.start.data);
 			let node = this.start.previous;
 			while(node) {
 
-				result = `${node.data} -> ${result}`;
+				result = `${stringifyData ? JSON.stringify(node.data) : node.data} -> ${result}`;
 				node = node.previous;
 			}
 

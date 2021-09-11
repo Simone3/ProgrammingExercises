@@ -34,9 +34,10 @@ export interface SinglyLinkedList<T> {
 
 	/**
 	 * Prints the linked list as a string
+	 * @param stringifyData if true, calls JSON.stringify on each node data
 	 * @returns the string representation
 	 */
-	toString(): string;
+	toString(stringifyData?: boolean): string;
 
 	/**
 	 * Sorts the linked list
@@ -110,25 +111,25 @@ export class SimpleSinglyLinkedList<T = string> implements SinglyLinkedList<T> {
 	/**
 	 * @override
 	 */
-	public toString(): string {
+	public toString(stringifyData?: boolean): string {
 
 		if(this.head) {
 
 			const cycleCheckMap = new Map<Node<T>, boolean>();
 			cycleCheckMap.set(this.head, true);
-			let result = String(this.head.data);
+			let result = String(stringifyData ? JSON.stringify(this.head.data) : this.head.data);
 			let node = this.head.next;
 			while(node) {
 
 				if(cycleCheckMap.get(node)) {
 
-					result += ` -> [CYCLE on ${node.data}] -> ...`;
+					result += ` -> [CYCLE on ${stringifyData ? JSON.stringify(node.data) : node.data}] -> ...`;
 					break;
 				}
 
 				cycleCheckMap.set(node, true);
 
-				result += ` -> ${node.data}`;
+				result += ` -> ${stringifyData ? JSON.stringify(node.data) : node.data}`;
 				node = node.next;
 			}
 
