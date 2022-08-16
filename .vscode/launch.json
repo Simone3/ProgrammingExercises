@@ -11,7 +11,7 @@
 			"skipFiles": [
 				"<node_internals>/**"
 			],
-			"program": "${workspaceFolder}/exercises/sort.ts",
+			"program": "${workspaceFolder}/app/exercises/smallestK/test.ts",
 			"preLaunchTask": "tsc: build - tsconfig.json",
 			"outFiles": [
 				"${workspaceFolder}/build/**/*.js"

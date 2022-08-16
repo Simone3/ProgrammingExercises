@@ -37,6 +37,35 @@ export interface DoublyLinkedList<T> {
 	tail: Node<T> | undefined;
 
 	/**
+	 * Adds a new element as the new head
+	 * @param newValue the new element
+	 */
+	addToHead(newValue: T): void;
+
+	/**
+	 * Adds a new element as the new tail
+	 * @param newValue the new element
+	 */
+	addToTail(newValue: T): void;
+
+	/**
+	 * Removes and returns the head element
+	 * @returns head element data
+	 */
+	removeHead(): T;
+
+	/**
+	 * Removes and returns the tail element
+	 * @returns tail element data
+	 */
+	removeTail(): T;
+
+	/**
+	 * Empties the list
+	 */
+	clear(): void;
+
+	/**
 	 * Computes the length of the linked list. Needs to loop the whole list each time.
 	 * @returns the list length
 	 */
@@ -44,10 +73,11 @@ export interface DoublyLinkedList<T> {
 
 	/**
 	 * Prints the linked list as a string
-	 * @param start starting point
+	 * @param start optional starting point (defaults to HEAD)
+	 * @param dataToString optional function to transform each node data to string (defaults to String(data))
 	 * @returns the string representation
 	 */
-	toString(start?: 'HEAD' | 'TAIL'): string;
+	toString(start?: 'HEAD' | 'TAIL', dataToString?: (data: T) => string): string;
 }
 
 /**
@@ -107,6 +137,116 @@ export class SimpleDoublyLinkedList<T = string> implements DoublyLinkedList<T> {
 	/**
 	 * @override
 	 */
+	public addToHead(newValue: T): void {
+
+		const newNode = new SimpleNode(newValue);
+
+		if(this.head) {
+
+			newNode.next = this.head;
+			newNode.prev = undefined;
+
+			this.head.prev = newNode;
+
+			this.head = newNode;
+		}
+		else {
+
+			this.head = this.tail = newNode;
+		}
+	}
+
+	/**
+	 * @override
+	 */
+	public addToTail(newValue: T): void {
+
+		const newNode = new SimpleNode(newValue);
+
+		if(this.tail) {
+
+			newNode.next = undefined;
+			newNode.prev = this.tail;
+
+			this.tail.next = newNode;
+
+			this.tail = newNode;
+		}
+		else {
+
+			this.head = this.tail = newNode;
+		}
+	}
+ 
+	/**
+	 * @override
+	 */
+	public removeHead(): T {
+
+		if(this.head) {
+
+			const data = this.head.data;
+			const next = this.head.next;
+
+			if(next) {
+
+				next.prev = undefined;
+
+				this.head = next;
+			}
+			else {
+
+				this.head = this.tail = undefined;
+			}
+
+			return data;
+		}
+		else {
+
+			throw Error('Cannot remove head from an empty list!');
+		}
+	}
+ 
+	/**
+	 * @override
+	 */
+	public removeTail(): T {
+
+		if(this.tail) {
+
+			const data = this.tail.data;
+			const prev = this.tail.prev;
+
+			if(prev) {
+
+				prev.next = undefined;
+
+				this.tail = prev;
+			}
+			else {
+
+				this.head = this.tail = undefined;
+			}
+
+			return data;
+		}
+		else {
+
+			throw Error('Cannot remove tail from an empty list!');
+		}
+	}
+
+	/**
+	 * @override
+	 */
+	public clear(): void {
+
+		this.head = this.tail = undefined;
+	}
+
+	/**
+	 * @override
+	 */
 	public length(): number {
 
 		let length = 0;
@@ -122,25 +262,32 @@ export class SimpleDoublyLinkedList<T = string> implements DoublyLinkedList<T> {
 	/**
 	 * @override
 	 */
-	public toString(start?: 'HEAD' | 'TAIL'): string {
+	public toString(start?: 'HEAD' | 'TAIL', dataToString?: (data: T) => string): string {
+
+		if(!dataToString) {
+
+			dataToString = (data) => {
+				return String(data);
+			};
+		}
 
 		if((!start || start === 'HEAD') && this.head) {
 
 			const cycleCheckMap = new Map<Node<T>, boolean>();
 			cycleCheckMap.set(this.head, true);
-			let result = String(this.head.data);
+			let result = dataToString(this.head.data);
 			let node = this.head.next;
 			while(node) {
 
 				if(cycleCheckMap.get(node)) {
 
-					result += ` -> [CYCLE on ${node.data}] -> ...`;
+					result += ` -> [CYCLE on ${dataToString(node.data)}] -> ...`;
 					break;
 				}
 
 				cycleCheckMap.set(node, true);
 
-				result += ` -> ${node.data}`;
+				result += ` -> ${dataToString(node.data)}`;
 				node = node.next;
 			}
 
@@ -150,19 +297,19 @@ export class SimpleDoublyLinkedList<T = string> implements DoublyLinkedList<T> {
 
 			const cycleCheckMap = new Map<Node<T>, boolean>();
 			cycleCheckMap.set(this.tail, true);
-			let result = String(this.tail.data);
+			let result = dataToString(this.tail.data);
 			let node = this.tail.prev;
 			while(node) {
 
 				if(cycleCheckMap.get(node)) {
 
-					result += ` -> [CYCLE on ${node.data}] -> ...`;
+					result += ` -> [CYCLE on ${dataToString(node.data)}] -> ...`;
 					break;
 				}
 
 				cycleCheckMap.set(node, true);
 
-				result += ` -> ${node.data}`;
+				result += ` -> ${dataToString(node.data)}`;
 				node = node.prev;
 			}
 

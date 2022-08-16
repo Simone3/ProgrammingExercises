@@ -5,7 +5,7 @@ import { SimpleQueue } from '../../data-structures/queue';
  */
 class QueueWithLength extends SimpleQueue<number> {
 
-	public length = 0;
+	public currentLength = 0;
 
 	/**
 	 * @override
@@ -13,7 +13,7 @@ class QueueWithLength extends SimpleQueue<number> {
 	public add(data: number): void {
 
 		super.add(data);
-		this.length += 1;
+		this.currentLength += 1;
 	}
 
 	/**
@@ -22,7 +22,7 @@ class QueueWithLength extends SimpleQueue<number> {
 	public remove(): number {
 
 		const value = super.remove();
-		this.length -= 1;
+		this.currentLength -= 1;
 		return value;
 	}
 }
@@ -82,7 +82,7 @@ export class ProjectBuildV1 {
 		}
 	
 		// Process all candidates for the next project in the build order (until there are none left or we cycled on the projects to check, a.k.a. there's no valid build order)
-		let invalidCheckCounter = this.projectsToCheck.length;
+		let invalidCheckCounter = this.projectsToCheck.currentLength;
 		while(!this.projectsToCheck.isEmpty() && invalidCheckCounter > 0) {
 	
 			const i = this.projectsToCheck.remove();
@@ -96,7 +96,7 @@ export class ProjectBuildV1 {
 
 				// Project has no dependencies: add it to the build order and reset the cycle counter
 				this.addToBuildOrder(i);
-				invalidCheckCounter = this.projectsToCheck.length;
+				invalidCheckCounter = this.projectsToCheck.currentLength;
 			}
 			else {
 
