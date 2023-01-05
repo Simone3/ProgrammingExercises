@@ -21,30 +21,6 @@ export const hasOwnFunctionProperty = <X extends {}, Y extends PropertyKey> (obj
 };
 
 /**
- * Simple helper to generate a random string for test purposes
- * @param length string length
- * @param characters optional domain of the string
- * @returns the random string
- */
-export const randomString = (length: number, characters?: string): string => {
-
-	if(!characters) {
-
-		characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-	}
-
-	const charactersLength = characters.length;
-
-	let result = '';
-	for(let i = 0; i < length; i++) {
-
-		result += characters.charAt(Math.floor(Math.random() * charactersLength));
-	}
-
-	return result;
-};
-
-/**
  * Simple helper to generate a random integer between two integers for test purposes
  * @param min the min number (inclusive)
  * @param max the max number (inclusive)
@@ -88,6 +64,51 @@ export const randomSortedIntegerArray = (length: number, min: number, max: numbe
 
 		return first - second;
 	});
+};
+
+/**
+ * Simple helper to generate a random string for test purposes
+ * @param length string length
+ * @param characters optional domain of the string
+ * @returns the random string
+ */
+export const randomString = (length: number, characters?: string): string => {
+
+	if(!characters) {
+
+		characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+	}
+
+	const charactersLength = characters.length;
+
+	let result = '';
+	for(let i = 0; i < length; i++) {
+
+		result += characters.charAt(Math.floor(Math.random() * charactersLength));
+	}
+
+	return result;
+};
+
+/**
+ * Simple helper to generate a random string array
+ * @param length the array length
+ * @param stringLengthMin the min string length (inclusive)
+ * @param stringLengthMax the max string length (inclusive)
+ * @param characters optional domain of the string
+ * @returns a random string array
+ */
+export const randomStringArray = (length: number, stringLengthMin: number, stringLengthMax: number, characters?: string): string[] => {
+
+	const array = [];
+	array.length = length;
+
+	for(let i = 0; i < length; i++) {
+
+		array[i] = randomString(randomInteger(stringLengthMin, stringLengthMax), characters);
+	}
+
+	return array;
 };
 
 /**
